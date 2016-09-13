@@ -11,6 +11,7 @@ package ToWebSite;
 import ecs100.UI;
 import java.awt.Color;
 import java.util.*;
+import java.lang.Math.*;
 
 public class Arm
 {
@@ -124,18 +125,18 @@ public class Arm
    public void directKinematic(){
        
        // midpoint between joints
-       //double  xa =.... ;
-       //double  ya =.... ;
+       double  xa = xj1 + (xj2 - xj1)/2;
+       double  ya = yj1 + (yj2 - yj1)/2;
        // distance between joints
-       //double d = ...;
+       double d = Math.sqrt(Math.pow(2, xj2 - xj1) + (Math.pow(2, yj2 - yj1));
        if (d<2*r){
            valid_state = true;
          // half distance between tool positions
-         //double  h = ...;
-         //double alpha= ...;
+         double  h = Math.sqrt((Math.pow(2, r) - Math.pow(2, d/2));
+         double alpha = atan((yj1 - yj2) / (xj2 - xj1));
          // tool position
-        // double xt = ...;
-        // double yt = ...;
+        double xt = xa + h * cos(Math.PI/2 - alpha);
+        double yt = ya + h * sin(Math.PI/2 - alpha);
          //  xt2 = xa - h.*cos(alpha-pi/2);
          //  yt2 = ya - h.*sin(alpha-pi/2);
        } else {
@@ -146,7 +147,7 @@ public class Arm
     
     // motor angles from tool position
     // updetes variables of the class
-    public void inverseKinematic(double xt_new,double yt_new){
+    public void inverseKinematic(double xt_new, double yt_new){
          
         valid_state = true;
         xt = xt_new;
@@ -155,7 +156,7 @@ public class Arm
         double dx1 = xt - xm1; 
         double dy1 = yt - ym1;
         // distance between pem and motor
-        double d1 = ...;
+        double d1 = Math.sqrt((Math.pow(2, xt - xm1) - (Math.pow(2, yt - ym1));
         if (d1>2*r){
             //UI.println("Arm 1 - can not reach");
             valid_state = false;
@@ -165,8 +166,8 @@ public class Arm
         double l1 = d1/2;
         double h1 = Math.sqrt(r*r - d1*d1/4);
         // elbows positions
-        //xj1 = ...;
-        //yj1 = ...;
+        xj1 = xm1 + r*Math.cos(theta1);
+        yj1 = ym1 + r*Math.sin(theta1);
 
         ///theta1 = ...;
         if ((theta1>0)||(theta1<-Math.PI)){
@@ -178,7 +179,7 @@ public class Arm
         // theta12 = atan2(yj12 - ym1,xj12-xm1);
         double dx2 = xt - xm2; 
         double dy2 = yt - ym2;
-        double d2 = ...;
+        double d2 = Math.sqrt((Math.pow(2, xt - xm2) - (Math.pow(2, yt - ym2));
         if (d2>2*r){
            // UI.println("Arm 2 - can not reach");
             valid_state = false;
@@ -189,8 +190,8 @@ public class Arm
         
         double h2 = Math.sqrt(r*r - d2*d2/4);
         // elbows positions
-        xj2 = ...;
-        yj2 = ...;
+        xj2 = xm2 + r*Math.cos(theta2);
+        yj2 = ym2 + r*Math.sin(theta2);
         // motor angles for both 1st elbow positions
         theta2 = ...;
         if ((theta2>0)||(theta2<-Math.PI)){
