@@ -54,8 +54,8 @@ public class Arm
     public Arm()
     {
         xm1 = 290; // set motor coordinates
-        ym1 = 372;
-        xm2 = 379;
+        ym1 = 373;
+        xm2 = 368;
         ym2 = 374;
         r = 156.0;
         theta1 = -90.0*Math.PI/180.0; // initial angles of the upper arms
@@ -172,7 +172,7 @@ public class Arm
         xj1 = xm1 + r*Math.cos(theta1);
         yj1 = ym1 + r*Math.sin(theta1);
 
-        theta1 = ...;
+        theta1 = Math.pi-(Math.atan2(yj1-ym1,xj1-xm1);
         if ((theta1>0)||(theta1<-Math.PI)){
             valid_state = false;
             //UI.println("Ange 1 -invalid");
@@ -197,7 +197,7 @@ public class Arm
         yj2 = ym2 + r*Math.sin(theta2);
         
         // motor angles for both 1st elbow positions
-        theta2 = ...;
+        theta2 = Math.atan2(yj2-ym2,xj2-xm2;
         if ((theta2>0)||(theta2<-Math.PI)){
             valid_state = false;
             //UI.println("Ange 2 -invalid");
